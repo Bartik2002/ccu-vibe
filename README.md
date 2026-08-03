@@ -18,6 +18,13 @@ npm run dev     # http://localhost:3210
 npm run build   # production build
 ```
 
+## Deploy
+
+Hosted on Vercel (Hobby). Set `NEXT_PUBLIC_SUPABASE_URL` and
+`NEXT_PUBLIC_SUPABASE_ANON_KEY` in the project's environment variables.
+Commits must be authored with a GitHub-associated email, or Vercel blocks
+the build (`COMMIT_AUTHOR_REQUIRED`).
+
 ## Structure
 
 | Path | What lives there |
