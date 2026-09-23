@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@custom-variant night (&:where(.night, .night *));
+
+@theme {
+  /* CCU.Vibe palette */
+  --color-cream: #f8f5ef;
+  --color-ink: #111111;
+  --color-smoke: #555555;
+  --color-coral: #f96e5b;
+  --color-sun: #ffd85e;
+  --color-sky: #8cc9ff;
+  --color-lilac: #c9b7ff;
+  --color-mint: #a9e5c2;
+  --color-tangerine: #ffb36b;
+
+  /* Type system */
+  --font-display: "Bebas Neue", "Oswald", "Arial Narrow", sans-serif;
+  --font-heading: "Clash Display", "Inter", ui-sans-serif, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion */
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-marquee: marquee 26s linear infinite;
+  --animate-grain: grain 9s steps(10) infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+}
+
+/* Day / night theme tokens */
+:root {
+  --bg: #f8f5ef;
+  --fg: #111111;
+  --muted: #55524b;
+  --card: #fffdf8;
+  --line: rgba(17, 17, 17, 0.14);
+  --glass: rgba(248, 245, 239, 0.72);
+}
+
+.night {
+  --bg: #0e0c18;
+  --fg: #f5f1ff;
+  --muted: #b0aac8;
+  --card: #171329;
+  --line: rgba(245, 241, 255, 0.16);
+  --glass: rgba(14, 12, 24, 0.66);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Lenis smooth-scroll recommended styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-coral);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Custom cursor hides the native one only on fine pointers (set via JS) */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+/* Halftone texture helper */
+.halftone {
+  background-image: radial-gradient(currentColor 1px, transparent 1.6px);
+  background-size: 14px 14px;
+}
+
+/* Pulsing map landmark dots (SVG-safe) */
+.map-ping {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ping-dot 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-16px) rotate(var(--r, 0deg));
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Shifts a repeating 300px noise tile — cheap, viewport-sized layer */
+@keyframes grain {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  10% {
+    background-position: -45px -90px;
+  }
+  20% {
+    background-position: -135px 45px;
+  }
+  30% {
+    background-position: 65px -225px;
+  }
+  40% {
+    background-position: -45px 225px;
+  }
+  50% {
+    background-position: -135px 90px;
+  }
+  60% {
+    background-position: 135px 0;
+  }
+  70% {
+    background-position: 0 135px;
+  }
+  80% {
+    background-position: 25px 275px;
+  }
+  90% {
+    background-position: -90px 90px;
+  }
+}
+
+@keyframes ping-dot {
+  75%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
