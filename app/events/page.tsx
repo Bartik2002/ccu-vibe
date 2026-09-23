@@ -31,7 +31,7 @@ export default function EventsPage() {
   const handleQuickReserve = (e: React.MouseEvent, title: string) => {
     e.preventDefault();
     e.stopPropagation();
-    toast(`✦ Pass reserved for "${title}". Direct confirmation sent to Dreamlist.`);
+    toast(`Ticket reserved for "${title}". See you outside.`);
   };
 
   return (
@@ -43,7 +43,6 @@ export default function EventsPage() {
         <div className="border-b border-(--line)">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-(--muted) sm:px-6 lg:px-8">
             <div className="flex items-center gap-3">
-              <span className="inline-block size-1.5 rounded-full bg-coral animate-pulse" />
               <span>KOLKATA CULTURE ARCHIVE // DIRECTORY</span>
             </div>
             <span className="hidden sm:inline">ALL 144 WARDS // CURATED ACCESS</span>
@@ -58,26 +57,24 @@ export default function EventsPage() {
               <div>
                 <div className="inline-flex items-center gap-2 border border-(--line) bg-(--card) px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-(--muted) mb-4">
                   <span className="text-coral">●</span>
-                  <span>Live Program Guide</span>
+                  <span>Live Calendar</span>
                 </div>
                 <h1 className="font-display text-7xl sm:text-9xl lg:text-[11vw] font-bold tracking-tight text-(--fg) uppercase leading-[0.85] select-none">
                   EVENTS<span className="text-coral">.</span>
                 </h1>
                 <p className="mt-4 font-heading text-xl sm:text-2xl text-(--muted) italic font-medium">
-                  &ldquo;What&apos;s happening across Kolkata.&rdquo;
+                  &ldquo;Things worth leaving home for.&rdquo;
                 </p>
               </div>
 
               <div className="max-w-md border-l-2 border-coral pl-6 py-1">
                 <p className="font-mono text-xs uppercase tracking-wider text-(--muted) leading-relaxed">
-                  Every entry vetted by cultural insiders. No sponsored placements,
-                  no algorithmic clutter. From proscenium stages at Rabindra Sadan to
-                  midnight soundchecks on Park Street.
+                  No sponsored listings. No algorithms. Direct admission from proscenium stages at Rabindra Sadan to midnight sets on Park Street.
                 </p>
                 <div className="mt-4 flex items-center gap-4 font-mono text-[11px] uppercase text-coral font-bold tracking-widest">
-                  <span>SHOWING {filtered.length} DISPATCHES</span>
+                  <span>SHOWING {filtered.length} DATES</span>
                   <span>•</span>
-                  <span>DIRECT ACCESS</span>
+                  <span>DIRECT ADMISSION</span>
                 </div>
               </div>
             </div>
@@ -85,7 +82,7 @@ export default function EventsPage() {
             {/* Typography-Based Category Filter Bar */}
             <div className="mt-14 pt-8 border-t border-(--line)">
               <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-(--muted)">
-                [ SELECT DISCIPLINE ]
+                [ GENRE ]
               </div>
               <div className="flex flex-wrap items-baseline gap-x-6 sm:gap-x-10 gap-y-3 font-heading text-lg sm:text-2xl md:text-3xl font-bold tracking-tight uppercase">
                 {CATEGORIES.map((cat, i) => {
@@ -248,17 +245,11 @@ function LeadBroadsheetItem({
             ● {event.status}
           </div>
 
-          {/* Map Ping Location Corner Badge */}
+          {/* Location Corner Badge */}
           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between border border-cream/20 bg-ink/95 p-3.5 text-cream">
-            <div className="flex items-center gap-2.5">
-              <span className="relative flex size-2 items-center justify-center">
-                <span className="map-ping absolute inline-flex size-full rounded-full bg-sun opacity-75" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-sun" />
-              </span>
-              <span className="font-heading text-sm font-semibold tracking-wide">
-                {event.venue}
-              </span>
-            </div>
+            <span className="font-heading text-sm font-semibold tracking-wide">
+              {event.venue}
+            </span>
             <span className="font-mono text-xs text-cream/70 uppercase">
               {event.area}
             </span>
@@ -318,8 +309,8 @@ function LeadBroadsheetItem({
               data-cursor
               className="inline-flex items-center gap-2 border border-(--line) bg-transparent px-5 py-3 font-heading text-xs font-bold uppercase tracking-wider text-(--fg) transition-colors hover:border-(--fg)"
             >
-              <span>RESERVE PASS</span>
-              <span className="text-coral">✦</span>
+              <span>GET TICKETS</span>
+              <span className="text-coral">↗</span>
             </button>
           </div>
         </div>
@@ -400,7 +391,7 @@ function TallPosterItem({
           data-cursor
           className="font-heading text-xs font-bold uppercase tracking-wider text-(--fg) hover:text-coral"
         >
-          FULL DOSSIER →
+          DETAILS →
         </Link>
         <button
           type="button"
@@ -408,7 +399,7 @@ function TallPosterItem({
           data-cursor
           className="font-mono text-xs text-coral font-bold hover:underline"
         >
-          QUICK BOOK ✦
+          TICKETS ↗
         </button>
       </div>
     </article>
@@ -482,7 +473,7 @@ function InvertedInkItem({
           data-cursor
           className="border border-cream bg-cream px-4 py-2 font-heading text-xs font-bold uppercase text-ink hover:bg-sun hover:border-sun"
         >
-          DISPATCH →
+          DETAILS →
         </Link>
       </div>
     </article>
@@ -505,10 +496,7 @@ function MagazineDocketItem({
     <article className="border-2 border-(--line) bg-(--card) p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:border-coral">
       <div>
         <div className="flex items-center justify-between font-mono text-xs text-(--muted) uppercase tracking-widest pb-3 border-b border-(--line)">
-          <div className="flex items-center gap-2">
-            <span className="inline-block size-2 rounded-full bg-coral" />
-            <span className="font-bold text-(--fg)">0{index} // {event.category}</span>
-          </div>
+          <span className="font-bold text-(--fg)">0{index} // {event.category}</span>
           <span className="text-coral font-bold">{event.price}</span>
         </div>
 
@@ -547,7 +535,7 @@ function MagazineDocketItem({
           data-cursor
           className="font-heading text-xs font-bold uppercase tracking-wider text-coral hover:underline"
         >
-          VIEW FULL EVENT →
+          DETAILS →
         </Link>
         <button
           type="button"
@@ -555,7 +543,7 @@ function MagazineDocketItem({
           data-cursor
           className="font-mono text-[10px] uppercase tracking-wider text-(--muted) hover:text-(--fg)"
         >
-          RESERVE PASS ✦
+          TICKETS ↗
         </button>
       </div>
     </article>

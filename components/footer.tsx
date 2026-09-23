@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { site, socials } from "@/data/site";
 import { saveSignup } from "@/lib/supabase";
-import { dreamBigger, toast } from "@/lib/toast";
+import { toast } from "@/lib/toast";
 import { scrollToId } from "@/hooks/use-lenis";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -31,8 +31,8 @@ export default function Footer() {
     setEmail("");
     toast(
       result.duplicate
-        ? "✦ You're already receiving the CCU.Vibe gazette."
-        : "✦ Subscribed! First weekly cultural dispatch arrives Friday."
+        ? "You're already on the list."
+        : "Subscribed. First dispatch lands Friday morning."
     );
   };
 
@@ -62,21 +62,19 @@ export default function Footer() {
                 </span>
               </div>
               <p className="mt-4 max-w-md font-mono text-xs uppercase tracking-[0.18em] text-cream/70 leading-relaxed">
-                The independent cultural calendar and ticketing collective for Kolkata.
-                Curating music, proscenium theatre, independent comedy, and street
-                culture across the city.
+                Kolkata&apos;s live cultural calendar. Straight from the venue, zero surcharges.
               </p>
             </div>
 
             <div className="mt-8 font-mono text-[11px] text-cream/50 uppercase tracking-[0.2em]">
-              <span>EST. 2026 // CALCUTTA CULTURAL DISPATCH</span>
+              <span>EST. 2026 // KOLKATA</span>
             </div>
           </div>
 
           {/* Quick Links (3 cols) */}
           <div className="lg:col-span-3">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-sun font-bold mb-4">
-              Index // Directory
+              Directory
             </p>
             <ul className="space-y-2.5 font-mono text-xs uppercase tracking-wider text-cream/75">
               <li>
@@ -85,7 +83,7 @@ export default function Footer() {
                   onClick={(e) => go(e, "#events")}
                   className="hover:text-sun transition-colors"
                 >
-                  Upcoming Events [07]
+                  Dates [07]
                 </a>
               </li>
               <li>
@@ -94,7 +92,7 @@ export default function Footer() {
                   onClick={(e) => go(e, "#venues")}
                   className="hover:text-sun transition-colors"
                 >
-                  Venues Index [06]
+                  Venues [06]
                 </a>
               </li>
               <li>
@@ -103,16 +101,15 @@ export default function Footer() {
                   onClick={(e) => go(e, "#kolkata")}
                   className="hover:text-sun transition-colors"
                 >
-                  City Districts [06]
+                  Neighbourhoods [09]
                 </a>
               </li>
               <li>
                 <a
-                  href="#categories"
-                  onClick={(e) => go(e, "#categories")}
+                  href="/events"
                   className="hover:text-sun transition-colors"
                 >
-                  Sound &amp; Form
+                  All Listings
                 </a>
               </li>
               <li>
@@ -121,7 +118,7 @@ export default function Footer() {
                   onClick={(e) => go(e, "#about")}
                   className="hover:text-sun transition-colors"
                 >
-                  The Movement
+                  About
                 </a>
               </li>
               <li>
@@ -130,7 +127,7 @@ export default function Footer() {
                   onClick={(e) => go(e, "#dreamlist")}
                   className="text-sun hover:underline"
                 >
-                  Founding Dreamlist ✦
+                  The Dreamlist ↗
                 </a>
               </li>
             </ul>
@@ -139,10 +136,10 @@ export default function Footer() {
           {/* Newsletter Box (3 cols) */}
           <div className="lg:col-span-3">
             <p className="font-mono text-xs uppercase tracking-widest text-sun font-bold mb-4">
-              Weekly Dispatch
+              Friday Dispatch
             </p>
             <p className="font-mono text-xs text-cream/70 mb-4">
-              Get Friday morning picks: 5 things happening in Kolkata this weekend.
+              Three things worth leaving home for. Every Friday morning.
             </p>
 
             <form onSubmit={subscribe} noValidate className="space-y-2">
@@ -150,7 +147,7 @@ export default function Footer() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="your.email@kolkata.in"
+                placeholder="you@calcutta.in"
                 className="w-full border border-cream/20 bg-cream/5 px-3.5 py-2.5 font-mono text-xs text-cream placeholder:text-cream/40 focus:border-sun focus:outline-none"
               />
               <button
@@ -159,7 +156,7 @@ export default function Footer() {
                 data-cursor
                 className="w-full border border-sun bg-sun px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-wider text-ink transition-colors hover:bg-cream hover:border-cream hover:text-ink disabled:opacity-60"
               >
-                {saving ? "Joining…" : "Subscribe To Dispatch ↗"}
+                {saving ? "Saving…" : "Get Friday Dispatch ↗"}
               </button>
             </form>
           </div>
@@ -170,7 +167,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <span>© {new Date().getFullYear()} {site.brand}</span>
             <span>•</span>
-            <span>MADE WITH 💛 IN KOLKATA</span>
+            <span>KOLKATA, WB</span>
           </div>
 
           <div className="flex items-center gap-6">
@@ -185,14 +182,7 @@ export default function Footer() {
                 {s.name} ↗
               </a>
             ))}
-            <button
-              onClick={dreamBigger}
-              data-cursor
-              aria-label="Secret egg"
-              className="text-sun hover:text-cream transition-colors"
-            >
-              ✦
-            </button>
+
           </div>
         </div>
       </div>

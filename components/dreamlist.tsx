@@ -12,14 +12,6 @@ type Dreamer = { name: string; email: string; num: string };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const STORAGE_KEY = "ccu-dreamer";
 
-const BENEFITS = [
-  "First artist drop & secret lineups",
-  "Zero surcharge priority box office passes",
-  "Exclusive door privileges for unlisted venues",
-  "Direct community addas with festival curators",
-  "Founding member commemorative metal token",
-];
-
 export default function Dreamlist() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -66,7 +58,7 @@ export default function Dreamlist() {
       return;
     }
     if (result.duplicate) {
-      toast("✦ You are already a founding member on the Dreamlist.");
+      toast("You are already on the list. See you outside.");
     }
     const next: Dreamer = {
       name: trimmedName,
@@ -96,57 +88,28 @@ export default function Dreamlist() {
   return (
     <section
       id="dreamlist"
-      className="relative border-b border-(--line) bg-(--bg) text-(--fg) py-20 sm:py-28"
+      className="relative border-b border-(--line) bg-(--bg) text-(--fg) py-24 sm:py-32"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Editorial Section Container */}
-        <div className="border border-(--line) bg-(--card) p-6 sm:p-10 lg:p-14">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-(--line) pb-4 font-mono text-xs uppercase tracking-widest text-(--muted)">
-            <div className="flex items-center gap-2">
-              <span className="inline-block size-2 rounded-full bg-lilac animate-pulse" />
-              <span className="text-lilac font-bold">
-                FOUNDING CREDENTIAL // THE DREAMLIST
-              </span>
-            </div>
-            <span>TIER: FOUNDING MEMBER PASS</span>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 items-start">
+          {/* Left 6 Columns: Manifesto & Member Benefits */}
+          <div className="lg:col-span-6">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-lilac font-semibold">
+              EARLY DISPATCH
+            </p>
+
+            <h2 className="mt-3 font-display text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-(--fg) uppercase leading-[0.85] select-none">
+              THE DREAMLIST<span className="text-lilac">.</span>
+            </h2>
+
+            <p className="mt-6 font-body text-lg text-(--muted) leading-relaxed max-w-xl">
+              Dates before they hit social media. Direct passes, zero markup, no scalpers. Private box office access arrives in your inbox before public announcement.
+            </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-12 items-center">
-            {/* Left 6 Columns: Manifesto & Member Benefits */}
-            <div className="lg:col-span-6">
-              <span className="border border-lilac bg-lilac/15 px-3 py-1 font-mono text-xs font-bold uppercase tracking-[0.2em] text-lilac">
-                Early Access Pass
-              </span>
-
-              <h2 className="mt-6 font-display text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-(--fg) uppercase leading-[0.85] select-none">
-                THE DREAMLIST<span className="text-lilac">.</span>
-              </h2>
-              <p className="mt-2 font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-lilac font-bold">
-                FOUNDING MEMBER PASS // EARLY ACCESS
-              </p>
-
-              <p className="mt-6 font-body text-sm sm:text-base text-(--muted) leading-relaxed">
-                Before festivals announce line-ups. Before auditoriums open public
-                box offices. The Dreamlist is Kolkata&apos;s direct cultural
-                collective — no bot scalpers, no commercial markups.
-              </p>
-
-              {/* Benefits Checklist */}
-              <ul className="mt-8 space-y-3 font-mono text-xs uppercase tracking-wider text-(--fg)">
-                {BENEFITS.map((benefit, idx) => (
-                  <li key={benefit} className="flex items-center gap-3">
-                    <span className="text-lilac font-bold font-mono">
-                      [0{idx + 1}]
-                    </span>
-                    <span>{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Right 6 Columns: Interactive Ticket Form / Issued Member Credential */}
-            <div className="lg:col-span-6">
-              <AnimatePresence mode="wait">
+          {/* Right 6 Columns: Interactive Ticket Form / Issued Member Credential */}
+          <div className="lg:col-span-6">
+            <AnimatePresence mode="wait">
                 {dreamer ? (
                   <motion.div
                     key="credential"
@@ -157,7 +120,7 @@ export default function Dreamlist() {
                   >
                     <div className="flex items-center justify-between border-b border-cream/20 pb-4">
                       <span className="font-mono text-xs text-lilac uppercase tracking-widest font-bold">
-                        FOUNDING MEMBER CREDENTIAL
+                        FOUNDING PASS
                       </span>
                       <Image
                         src="/logo-calcutta-dreams.jpg"
@@ -170,7 +133,7 @@ export default function Dreamlist() {
 
                     <div className="mt-8">
                       <p className="font-mono text-xs text-lilac uppercase tracking-widest">
-                        CREDENTIAL NO. #{dreamer.num}
+                        PASS NO. #{dreamer.num}
                       </p>
                       <h3 className="font-display text-5xl sm:text-6xl text-cream font-bold mt-2">
                         {dreamer.name}
@@ -187,8 +150,7 @@ export default function Dreamlist() {
                     </div>
 
                     <p className="font-body text-xs text-cream/70 leading-relaxed">
-                      You hold an active founding pass. You will receive private box
-                      office codes before dates go public.
+                      You&apos;re on the list. Private box office links arrive before dates go public.
                     </p>
 
                     <button
@@ -196,7 +158,7 @@ export default function Dreamlist() {
                       onClick={reset}
                       className="mt-6 text-xs font-mono uppercase tracking-wider text-cream/40 hover:text-lilac transition-colors underline underline-offset-4"
                     >
-                      Update Details / Reset Pass
+                      Reset Pass
                     </button>
                   </motion.div>
                 ) : (
@@ -207,7 +169,7 @@ export default function Dreamlist() {
                     className="border border-(--line) bg-(--bg) p-6 sm:p-8"
                   >
                     <p className="font-mono text-xs uppercase tracking-widest text-lilac font-bold mb-6">
-                      Pass Application // Direct Entry
+                      Direct Entry Pass
                     </p>
 
                     <div className="space-y-4 font-mono text-xs">
@@ -258,11 +220,11 @@ export default function Dreamlist() {
                       data-cursor
                       className="mt-6 w-full border border-(--fg) bg-(--fg) py-4 font-heading text-xs font-bold uppercase tracking-wider text-(--bg) hover:bg-lilac hover:border-lilac hover:text-ink transition-colors disabled:opacity-60"
                     >
-                      {saving ? "Issuing Pass…" : "Claim Founding Pass ✦"}
+                      {saving ? "Saving…" : "Join The Dreamlist →"}
                     </button>
 
                     <p className="mt-4 text-center font-mono text-[10px] text-(--muted) uppercase tracking-widest">
-                      NO SPAM • FOUNDING MEMBER CODES ONLY
+                      NO SPAM. JUST THE DATES.
                     </p>
                   </motion.form>
                 )}
@@ -270,7 +232,6 @@ export default function Dreamlist() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
+    );
+  }

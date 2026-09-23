@@ -9,9 +9,9 @@ import { isNight, toggleNight } from "@/lib/night";
 import { upcomingEvents, venues } from "@/data/site";
 
 const NAV_LINKS = [
-  { label: "Events", target: "/events", badge: "07" },
+  { label: "Dates", target: "/events", badge: "07" },
   { label: "Venues", target: "#venues", badge: "06" },
-  { label: "About", target: "#about", badge: null },
+  { label: "Dispatch", target: "#about", badge: null },
 ] as const;
 
 export default function Navbar() {
@@ -112,7 +112,7 @@ export default function Navbar() {
                   CCU<span className="text-coral">.</span>VIBE
                 </span>
                 <span className="mt-0.5 font-mono text-[9px] uppercase tracking-widest text-(--muted)">
-                  Kolkata Culture Calendar
+                  Kolkata Cultural Index
                 </span>
               </div>
             </a>
@@ -178,18 +178,6 @@ export default function Navbar() {
               <span className="sm:hidden">{night ? "☾" : "☼"}</span>
             </button>
 
-            {/* Explore Events Button */}
-            <a
-              href="#events"
-              onClick={(e) => go(e, "#events")}
-              data-cursor
-              className="hidden lg:inline-flex items-center gap-2 border border-(--fg) bg-(--fg) px-3.5 py-1.5 font-heading text-xs font-semibold uppercase tracking-wider text-(--bg) transition-colors hover:border-coral hover:bg-coral hover:text-ink"
-            >
-              <span>What&apos;s On</span>
-              <span aria-hidden className="text-coral">
-                →
-              </span>
-            </a>
 
             {/* Mobile Hamburger Button */}
             <button
@@ -257,13 +245,13 @@ export default function Navbar() {
                     onClick={(e) => go(e, "#events")}
                     className="flex items-center justify-center gap-2 border border-(--fg) bg-(--fg) py-3 text-center font-heading text-xs font-semibold uppercase tracking-wider text-(--bg) transition-colors hover:border-coral hover:bg-coral hover:text-ink"
                   >
-                    <span>Explore Events</span>
+                    <span>What&apos;s On Tonight</span>
                     <span aria-hidden className="text-coral">
                       →
                     </span>
                   </a>
                   <p className="text-center font-mono text-[10px] tracking-widest text-(--muted) uppercase">
-                    KOLKATA CULTURE CALENDAR • 2026
+                    KOLKATA LIVE CALENDAR • 2026
                   </p>
                 </div>
               </div>
@@ -291,7 +279,7 @@ export default function Navbar() {
                   autoFocus
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search music, theatre, comedy, venues, locations…"
+                  placeholder="Search artists, venues, neighbourhoods…"
                   className="ml-3 w-full bg-transparent font-heading text-base sm:text-lg text-(--fg) placeholder:text-(--muted) focus:outline-none"
                 />
                 <button
@@ -308,7 +296,7 @@ export default function Navbar() {
                 {/* Events Group */}
                 <div className="pb-4">
                   <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-coral">
-                    Upcoming Events ({filteredEvents.length})
+                    Dates ({filteredEvents.length})
                   </p>
                   <div className="space-y-2">
                     {filteredEvents.map((ev) => (
@@ -344,7 +332,7 @@ export default function Navbar() {
                 {/* Venues Group */}
                 <div className="pt-4">
                   <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-sky">
-                    Venues ({filteredVenues.length})
+                    Rooms ({filteredVenues.length})
                   </p>
                   <div className="space-y-2">
                     {filteredVenues.map((v) => (

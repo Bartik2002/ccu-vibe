@@ -19,13 +19,13 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
 
   const handleBooking = () => {
     setReserved(true);
-    toast(`✦ Pass reserved for "${event.title}". Admission docket added to Dreamlist.`);
+    toast(`Ticket reserved for "${event.title}". See you outside.`);
   };
 
   const handleShare = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(window.location.href);
-      toast("✦ Event dispatch link copied to clipboard.");
+      toast("Link copied.");
     }
   };
 
@@ -43,7 +43,7 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
               className="group flex items-center gap-2 text-(--fg) hover:text-coral transition-colors"
             >
               <span className="transition-transform group-hover:-translate-x-1">←</span>
-              <span>ALL EVENTS // DIRECTORY</span>
+              <span>ALL DATES</span>
             </Link>
             <div className="hidden sm:flex items-center gap-4">
               <span>PLATE {event.num}</span>
@@ -100,47 +100,15 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
                     className="halftone absolute inset-0 opacity-15 pointer-events-none"
                   />
 
-                  {/* Corner Map-Ping Coordinate Stamp */}
-                  <div className="absolute bottom-4 left-4 flex items-center gap-2.5 border border-ink bg-coral px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-cream">
-                    <span className="relative flex size-2 items-center justify-center">
-                      <span className="map-ping absolute inline-flex size-full rounded-full bg-cream opacity-75" />
-                      <span className="relative inline-flex size-1.5 rounded-full bg-cream" />
-                    </span>
+                  {/* Corner Venue Stamp */}
+                  <div className="absolute bottom-4 left-4 border border-ink bg-coral px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-cream">
                     <span>{event.venue}</span>
-                  </div>
-
-                  {/* Floating Circular Vintage Stamp */}
-                  <div
-                    className="absolute top-4 right-4 size-20 rounded-full border border-cream/30 bg-ink/90 p-2 text-center text-cream flex flex-col items-center justify-center animate-float-slow select-none"
-                    style={{ "--r": "3deg" } as React.CSSProperties}
-                  >
-                    <svg
-                      aria-hidden
-                      viewBox="0 0 64 64"
-                      className="absolute inset-0 size-full animate-spin-slow pointer-events-none text-coral/40"
-                    >
-                      <circle
-                        cx="32"
-                        cy="32"
-                        r="29"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeDasharray="4 4"
-                      />
-                    </svg>
-                    <span className="font-display text-base tracking-wider text-coral leading-none relative z-10">
-                      CCU
-                    </span>
-                    <span className="font-mono text-[8px] uppercase tracking-widest text-cream/70 relative z-10">
-                      LIVE ROOM
-                    </span>
                   </div>
                 </div>
 
                 {/* Photo Caption Strip */}
                 <div className="mt-3 flex items-center justify-between font-mono text-[11px] uppercase tracking-wider text-(--muted)">
-                  <span>ARCHIVE CAPTURE // PROSCENIUM SPEC</span>
+                  <span>VENUE SPECIFICATION</span>
                   <span>100% INDEPENDENT</span>
                 </div>
               </div>
@@ -150,10 +118,7 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
                 <div className="border-2 border-dashed border-(--fg) bg-(--card) p-6 sm:p-8 relative">
                   {/* Ticket Header */}
                   <div className="flex items-center justify-between border-b-2 border-dashed border-(--line) pb-4 font-mono text-xs uppercase tracking-widest text-(--muted)">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-block size-2 rounded-full bg-coral animate-ping" />
-                      <span className="font-bold text-(--fg)">OFFICIAL ADMISSION DOCKET</span>
-                    </div>
+                    <span className="font-bold text-(--fg)">OFFICIAL ADMISSION DOCKET</span>
                     <span>NO. {event.num.replace(/[^0-9]/g, "") || "01"}</span>
                   </div>
 
@@ -221,7 +186,7 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
                       className="group w-full flex items-center justify-between border-2 border-(--fg) bg-(--fg) px-6 py-4 font-heading text-sm font-bold uppercase tracking-wider text-(--bg) transition-colors hover:border-coral hover:bg-coral hover:text-ink"
                     >
                       <span>
-                        {reserved ? "✓ PASS CONFIRMED" : `RESERVE PASS // ${event.price}`}
+                        {reserved ? "✓ TICKET CONFIRMED" : `GET TICKETS // ${event.price}`}
                       </span>
                       <span
                         aria-hidden
@@ -237,7 +202,7 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
                       data-cursor
                       className="w-full flex items-center justify-center gap-2 border border-(--line) bg-transparent py-3 font-mono text-xs uppercase tracking-wider text-(--muted) transition-colors hover:border-(--fg) hover:text-(--fg)"
                     >
-                      <span>SHARE EVENT DISPATCH</span>
+                      <span>SHARE LINK</span>
                       <span>↗</span>
                     </button>
                   </div>
@@ -261,11 +226,11 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
               <div className="lg:col-span-7">
                 <div className="inline-flex items-center gap-2 border border-(--line) bg-(--card) px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-(--muted) mb-6">
                   <span className="text-coral">✦</span>
-                  <span>CURATORIAL NOTES</span>
+                  <span>NOTES</span>
                 </div>
 
                 <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-(--fg) uppercase leading-none">
-                  THE ATMOSPHERE &amp; THE STAGE
+                  THE ROOM &amp; THE STAGE
                 </h2>
 
                 <div className="mt-8 space-y-6 font-body text-base sm:text-lg text-(--muted) leading-relaxed">
@@ -273,52 +238,49 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
                     {event.blurb}
                   </p>
                   <p>
-                    In a city where evening discussions outlast the performance itself, this session
-                    brings together artists and audiences without the sanitized distance of corporate
-                    arenas. Expect unscripted moments, acoustic intimacy, and the electric buzz of
-                    Kolkata&apos;s active cultural circuit.
+                    In Kolkata, the adda afterwards usually outlasts the show. Expect tight acoustic rooms, unscripted moments, and an audience that knows every chord.
                   </p>
                 </div>
 
                 {/* Cultural Pullquote */}
                 <div className="mt-10 border-y-2 border-(--line) py-6 font-heading text-xl italic font-medium text-(--fg)">
-                  &ldquo;Kolkata does not sit quietly in auditoriums. The crowd is part of the instrumentation.&rdquo;
+                  &ldquo;Kolkata doesn&apos;t sit quietly in auditoriums. The crowd is part of the music.&rdquo;
                 </div>
               </div>
 
               {/* Right Column (5 cols): Technical Event Information Dossier */}
               <div className="lg:col-span-5 border border-(--line) bg-(--card) p-6 sm:p-8">
                 <div className="border-b border-(--line) pb-4 font-mono text-xs uppercase tracking-widest text-(--muted) flex items-center justify-between">
-                  <span>SPECIFICATIONS // VENUE FIELD GUIDE</span>
-                  <span className="text-coral">04 PARAMS</span>
+                  <span>VENUE GUIDE</span>
+                  <span className="text-coral">04 SPECS</span>
                 </div>
 
                 <div className="divide-y divide-(--line) text-sm font-mono uppercase">
                   <div className="py-4">
-                    <span className="text-[10px] text-(--muted) block">VENUE SETUP</span>
+                    <span className="text-[10px] text-(--muted) block">STAGE</span>
                     <span className="font-heading font-semibold text-(--fg) block mt-1 normal-case text-base">
-                      {event.venue} — Dedicated proscenium stage with tiered floor seating and open acoustics.
+                      {event.venue} — Dedicated proscenium stage with tiered floor seating.
                     </span>
                   </div>
 
                   <div className="py-4">
-                    <span className="text-[10px] text-(--muted) block">NEAREST TRANSIT</span>
+                    <span className="text-[10px] text-(--muted) block">TRANSIT</span>
                     <span className="font-heading font-semibold text-(--fg) block mt-1 normal-case text-base">
-                      Direct access via Metro station and arterial bus routes. Auto-rickshaw stands immediately outside the gates.
+                      Metro station and arterial bus routes within 200m. Auto stands right outside the gates.
                     </span>
                   </div>
 
                   <div className="py-4">
-                    <span className="text-[10px] text-(--muted) block">DOOR POLICY</span>
+                    <span className="text-[10px] text-(--muted) block">DOORS</span>
                     <span className="font-heading font-semibold text-(--fg) block mt-1 normal-case text-base">
-                      Doors open 45 minutes prior to scheduled start. Direct confirmation name check at entrance; zero bot scalping.
+                      Doors open 45 minutes before start. Name check at the door; zero bot scalping.
                     </span>
                   </div>
 
                   <div className="py-4">
-                    <span className="text-[10px] text-(--muted) block">ADDA &amp; REFRESHMENTS</span>
+                    <span className="text-[10px] text-(--muted) block">CHAI &amp; ADDA</span>
                     <span className="font-heading font-semibold text-(--fg) block mt-1 normal-case text-base">
-                      Local tea vendors, street snack counters, and courtyard gathering spaces open before and after the session.
+                      Tea stalls and courtyard gathering spots open before and after the set.
                     </span>
                   </div>
                 </div>
@@ -335,10 +297,10 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
                 <div>
                   <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-coral font-bold">
                     <span className="inline-block size-2 rounded-full bg-coral" />
-                    <span>NEXT ON THE CIRCUIT</span>
+                    <span>NEXT UP</span>
                   </div>
                   <h3 className="mt-2 font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-(--fg) uppercase leading-none">
-                    RELATED EVENTS<span className="text-coral">.</span>
+                    ALSO ON THIS WEEK<span className="text-coral">.</span>
                   </h3>
                 </div>
 
@@ -347,7 +309,7 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
                   data-cursor
                   className="font-mono text-xs uppercase tracking-wider text-coral hover:underline"
                 >
-                  VIEW ALL DIRECTORY (07) →
+                  ALL DATES (07) →
                 </Link>
               </div>
 
@@ -401,7 +363,7 @@ export default function EventDetailClient({ event, relatedEvents }: Props) {
                         data-cursor
                         className="font-bold text-coral hover:underline"
                       >
-                        VIEW DISPATCH →
+                        DETAILS →
                       </Link>
                     </div>
                   </article>

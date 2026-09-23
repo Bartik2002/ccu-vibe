@@ -4,9 +4,9 @@ import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ccuvibe.in"),
-  title: "CCU.Vibe — Where Kolkata Comes Alive.",
+  title: "CCU.Vibe — Kolkata Has Plans.",
   description:
-    "Kolkata's community-driven culture movement — music, culture, food, art & lifestyle. The Calcutta Dreams, our first flagship festival, is coming soon. Join the Dreamlist for first access.",
+    "Kolkata's live cultural calendar. Proscenium drama, live jazz, street addas, and riverfront sound. Direct admission, zero corporate clutter.",
   keywords: [
     "CCU.Vibe",
     "The Calcutta Dreams",
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     "Kolkata culture",
   ],
   openGraph: {
-    title: "CCU.Vibe — Where Kolkata Comes Alive.",
+    title: "CCU.Vibe — Kolkata Has Plans.",
     description:
-      "The Calcutta Dreams is coming. Music • Culture • Food • Art • Lifestyle. Join the Dreamlist.",
+      "Kolkata's live cultural calendar. Direct admission, zero corporate clutter.",
     type: "website",
     locale: "en_IN",
     siteName: "CCU.Vibe",
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CCU.Vibe — Where Kolkata Comes Alive.",
+    title: "CCU.Vibe — Kolkata Has Plans.",
     description:
-      "The Calcutta Dreams is coming. Music • Culture • Food • Art • Lifestyle. Join the Dreamlist.",
+      "Kolkata's live cultural calendar. Direct admission, zero corporate clutter.",
   },
 };
 
@@ -43,7 +43,7 @@ const eventJsonLd = {
   "@type": "Festival",
   name: "The Calcutta Dreams",
   description:
-    "The first flagship experience from CCU.Vibe — a music, culture, food, art and lifestyle festival in Kolkata. Coming soon.",
+    "The flagship music and culture festival from CCU.Vibe at Nazrul Mancha, Kolkata.",
   eventStatus: "https://schema.org/EventScheduled",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   location: {
